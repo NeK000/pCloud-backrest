@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.pcloudbackrest.FileComparisonServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-05-03T18:04:30.790Z" hostname="kontor" time="0.005">
-  <properties/>
-  <testcase name="transfersWhenSizeDiffers()" classname="com.example.pcloudbackrest.FileComparisonServiceTest" time="0.001"/>
-  <testcase name="skipsWhenSha1MatchesDespiteTimestampDifference()" classname="com.example.pcloudbackrest.FileComparisonServiceTest" time="0.002"/>
-  <testcase name="skipsWhenSizeAndTimestampMatch()" classname="com.example.pcloudbackrest.FileComparisonServiceTest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
