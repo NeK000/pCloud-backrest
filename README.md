@@ -1,6 +1,34 @@
 # pCloud Backrest
 
-[![CI](https://github.com/ninik/pcloud-backrest/actions/workflows/ci.yml/badge.svg)](https://github.com/ninik/pcloud-backrest/actions/workflows/ci.yml)
+<div style="display: flex; gap: 4px; flex-wrap: wrap;">
+    <a href="https://github.com/NeK000/pCloud-backrest/actions/workflows/ci.yml">
+        <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/ninik/pcloud-backrest/ci.yml?branch=main&label=ci&logo=githubactions&logoColor=white">
+    </a>
+    <a href="https://github.com/NeK000/pCloud-backrest/actions/workflows/ci.yml">
+        <img alt="Tests" src="https://img.shields.io/github/actions/workflow/status/ninik/pcloud-backrest/ci.yml?branch=main&label=tests&logo=githubactions&logoColor=white">
+    </a>
+    <a href="https://github.com/NeK000/pCloud-backrest/actions/workflows/ci.yml">
+        <img alt="Build" src="https://img.shields.io/github/actions/workflow/status/ninik/pcloud-backrest/ci.yml?branch=main&label=build&logo=githubactions&logoColor=white">
+    </a>
+    <a href="https://github.com/NeK000/pCloud-backrest/actions/workflows/ci.yml">
+        <img alt="Coverage" src="https://raw.githubusercontent.com/ninik/pcloud-backrest/main/.github/badges/jacoco.svg">
+    </a>
+    <a href="https://github.com/NeK000/pCloud-backrest/actions/workflows/ci.yml">
+        <img alt="Branch coverage" src="https://raw.githubusercontent.com/ninik/pcloud-backrest/main/.github/badges/branches.svg">
+    </a>
+    <a href="https://www.oracle.com/java/technologies/javase/25-relnote-issues.html">
+        <img alt="Java 25" src="https://img.shields.io/badge/java-25-orange">
+    </a>
+    <a href="https://gradle.org/">
+        <img alt="Gradle" src="https://img.shields.io/badge/gradle-wrapper-02303A">
+    </a>
+    <a href="https://github.com/ninik/pcloud-backrest/commits/main">
+        <img alt="Last commit" src="https://img.shields.io/github/last-commit/ninik/pcloud-backrest">
+    </a>
+    <a href="https://github.com/ninik/pcloud-backrest/blob/main/LICENSE">
+        <img alt="License" src="https://img.shields.io/github/license/ninik/pcloud-backrest">
+    </a>
+</div>
 
 Production-oriented Java 25 CLI for backing up and restoring a local folder to pCloud with the official pCloud Java SDK.
 
@@ -38,7 +66,7 @@ gradle test jacocoTestReport
 
 Open `build/reports/jacoco/test/html/index.html` to inspect coverage.
 
-The CI badge above turns green/red based on the GitHub Actions workflow result. The workflow also uploads the JaCoCo HTML coverage report as a `coverage-report` artifact for each run.
+The CI, tests, and build badges above turn green/red based on the latest GitHub Actions workflow result on `main`. The coverage badges are generated from JaCoCo during CI and committed to `.github/badges/` on successful pushes. The workflow also uploads the full JaCoCo HTML report as a `coverage-report` artifact for each run.
 
 ## Package Structure
 
