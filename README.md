@@ -1,6 +1,6 @@
 # pCloud Backrest
 
-Production-oriented Java 17 CLI for backing up and restoring a local folder to pCloud with the official pCloud Java SDK.
+Production-oriented Java 25 CLI for backing up and restoring a local folder to pCloud with the official pCloud Java SDK.
 
 ## Features
 
@@ -16,7 +16,7 @@ Production-oriented Java 17 CLI for backing up and restoring a local folder to p
 
 ## Build
 
-Requires Java 17+ and Gradle.
+Requires Java 25 and Gradle.
 
 ```bash
 gradle clean test build
