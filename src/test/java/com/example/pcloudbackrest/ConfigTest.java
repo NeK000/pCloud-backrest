@@ -7,8 +7,8 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ConfigTest {
     @Test
@@ -47,6 +47,21 @@ class ConfigTest {
         assertFalse(config.dryRun());
         assertFalse(config.deleteExtraFilesOnRestore());
         assertFalse(config.backupTimestamped());
+        assertTrue(config.schedule().isEmpty());
+    }
+
+    @Test
+    void parsesScheduleEnv() {
+        Map<String, String> env = baseEnv();
+        env.put("SCHEDULE_CRON", "0 3 * * SUN");
+        env.put("SCHEDULE_TIMEZONE", "UTC");
+        env.put("SCHEDULE_RUN_ON_START", "true");
+
+        Config config = Config.fromEnv(env);
+
+        assertTrue(config.schedule().isPresent());
+        assertTrue(config.scheduleRunOnStart());
+        assertEquals("UTC", config.schedule().get().zoneId().getId());
     }
 
     private Map<String, String> baseEnv() {

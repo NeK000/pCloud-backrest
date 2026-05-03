@@ -11,6 +11,7 @@ Production-oriented Java 17 CLI for backing up and restoring a local folder to p
 - Streams file transfers through the SDK without loading whole files into memory.
 - Continues after individual file failures and exits non-zero if any file failed.
 - Optional dry run and guarded restore deletion.
+- Optional in-process cron-like scheduler for long-running containers.
 - No token logging.
 
 ## Build
@@ -47,6 +48,9 @@ Optional:
 | `LOG_LEVEL` | `INFO` | Logback root level, for example `DEBUG`. |
 | `BACKUP_TIMESTAMPED` | `false` | When `true` in backup mode, appends a UTC timestamp folder below `PCLOUD_REMOTE_FOLDER`. |
 | `PCLOUD_API_HOST` | SDK default | Optional override, usually `api.pcloud.com` for US or `eapi.pcloud.com` for EU. The SDK handles standard host use; set this only if needed. |
+| `SCHEDULE_CRON` | unset | Optional 5-field cron expression. When set, the app stays running and repeats the configured `MODE`. |
+| `SCHEDULE_TIMEZONE` | JVM default | Timezone for `SCHEDULE_CRON`, for example `Europe/Copenhagen` or `UTC`. |
+| `SCHEDULE_RUN_ON_START` | `false` | When scheduling is enabled, run once immediately before waiting for the first scheduled time. |
 
 ## Examples
 
@@ -59,6 +63,38 @@ PCLOUD_REMOTE_FOLDER=/Backups/Immich \
 LOCAL_BACKUP_FOLDER=/data/photos \
 java -jar build/libs/app.jar
 ```
+
+Scheduled backup every day at 03:00 Copenhagen time:
+
+```bash
+MODE=backup \
+SCHEDULE_CRON="0 3 * * *" \
+SCHEDULE_TIMEZONE=Europe/Copenhagen \
+PCLOUD_ACCESS_TOKEN=xxx \
+PCLOUD_REMOTE_FOLDER=/Backups/Immich \
+LOCAL_BACKUP_FOLDER=/data/photos \
+java -jar build/libs/app.jar
+```
+
+Scheduled backup every Monday and Thursday at 02:30 UTC:
+
+```bash
+MODE=backup \
+SCHEDULE_CRON="30 2 * * MON,THU" \
+SCHEDULE_TIMEZONE=UTC \
+PCLOUD_ACCESS_TOKEN=xxx \
+PCLOUD_REMOTE_FOLDER=/Backups/Immich \
+LOCAL_BACKUP_FOLDER=/data/photos \
+java -jar build/libs/app.jar
+```
+
+The supported cron format is:
+
+```text
+minute hour day-of-month month day-of-week
+```
+
+Supported syntax includes `*`, comma lists, ranges, steps such as `*/15`, month names `JAN`-`DEC`, and weekday names `SUN`-`SAT`. When both day-of-month and day-of-week are restricted, matching follows standard cron behavior: either field can match.
 
 Restore:
 
@@ -112,6 +148,21 @@ docker run --rm \
   pcloud-backrest
 ```
 
+Scheduled backup:
+
+```bash
+docker run -d \
+  --name pcloud-backrest \
+  -e MODE=backup \
+  -e SCHEDULE_CRON="0 3 * * *" \
+  -e SCHEDULE_TIMEZONE=Europe/Copenhagen \
+  -e PCLOUD_ACCESS_TOKEN=xxx \
+  -e PCLOUD_REMOTE_FOLDER=/Backups/Immich \
+  -e LOCAL_BACKUP_FOLDER=/data/photos \
+  -v /path/to/photos:/data/photos \
+  pcloud-backrest
+```
+
 Restore:
 
 ```bash
@@ -128,7 +179,9 @@ The included `docker-compose.yml` shows the same configuration in Compose form.
 
 ## Scheduled Container Use
 
-Run this container from cron, systemd timers, Kubernetes CronJobs, or any scheduler. The process exits:
+By default, run this container from cron, systemd timers, Kubernetes CronJobs, or any scheduler. For a long-running container, set `SCHEDULE_CRON` and the app will keep running and execute on that schedule.
+
+In one-shot mode, the process exits:
 
 - `0` when the mode completed without file failures.
 - `1` for configuration or fatal startup errors.

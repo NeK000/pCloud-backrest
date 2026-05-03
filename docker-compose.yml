@@ -10,7 +10,12 @@ services:
       DELETE_EXTRA_FILES_ON_RESTORE: "false"
       BACKUP_TIMESTAMPED: "false"
       LOG_LEVEL: INFO
-      PCLOUD_API_HOST: eapi.pcloud.com
+      # Optional in-process scheduler. Leave unset for one-shot execution.
+      # SCHEDULE_CRON: "0 3 * * *"
+      # SCHEDULE_TIMEZONE: Europe/Copenhagen
+      # SCHEDULE_RUN_ON_START: "false"
+      # Set only if automatic host selection does not match your account.
+      # PCLOUD_API_HOST: eapi.pcloud.com
     volumes:
       - /path/to/photos:/data/photos
     restart: "no"

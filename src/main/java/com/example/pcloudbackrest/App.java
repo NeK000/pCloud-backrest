@@ -22,6 +22,21 @@ public final class App {
     static int run() {
         try {
             Config config = Config.fromEnv(System.getenv());
+            return config.schedule()
+                    .map(schedule -> new SchedulerService(schedule, Clock.system(schedule.zoneId()), () -> runOnce(config))
+                            .run(config.scheduleRunOnStart()))
+                    .orElseGet(() -> runOnce(config));
+        } catch (IllegalArgumentException e) {
+            log.error("Configuration error: {}", e.getMessage());
+            return 1;
+        } catch (Exception e) {
+            log.error("Fatal error", e);
+            return 1;
+        }
+    }
+
+    private static int runOnce(Config config) {
+        try {
             String remoteFolder = config.effectiveRemoteFolder(Clock.systemUTC());
             log.info("Starting {}: local={}, remote={}, dryRun={}",
                     config.mode().name().toLowerCase(), config.localBackupFolder(), remoteFolder, config.dryRun());

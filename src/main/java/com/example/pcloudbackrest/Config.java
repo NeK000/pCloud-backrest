@@ -2,9 +2,12 @@ package com.example.pcloudbackrest;
 
 import java.nio.file.Path;
 import java.time.Clock;
+import java.time.DateTimeException;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 record Config(
@@ -16,7 +19,9 @@ record Config(
         boolean deleteExtraFilesOnRestore,
         String logLevel,
         boolean backupTimestamped,
-        String apiHost
+        String apiHost,
+        CronSchedule cronSchedule,
+        boolean scheduleRunOnStart
 ) {
     private static final Set<String> DANGEROUS_PATHS = Set.of(
             "/", "/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/lib64",
@@ -42,7 +47,9 @@ record Config(
                 parseBoolean(env.get("DELETE_EXTRA_FILES_ON_RESTORE"), false, "DELETE_EXTRA_FILES_ON_RESTORE"),
                 env.getOrDefault("LOG_LEVEL", "INFO"),
                 parseBoolean(env.get("BACKUP_TIMESTAMPED"), false, "BACKUP_TIMESTAMPED"),
-                blankToNull(env.get("PCLOUD_API_HOST"))
+                blankToNull(env.get("PCLOUD_API_HOST")),
+                parseSchedule(env),
+                parseBoolean(env.get("SCHEDULE_RUN_ON_START"), false, "SCHEDULE_RUN_ON_START")
         );
     }
 
@@ -64,6 +71,23 @@ record Config(
         }
         if (mode == Mode.RESTORE && normalized.getNameCount() < 2) {
             throw new IllegalArgumentException("Refusing restore into a shallow filesystem path: " + normalized);
+        }
+    }
+
+    Optional<CronSchedule> schedule() {
+        return Optional.ofNullable(cronSchedule);
+    }
+
+    private static CronSchedule parseSchedule(Map<String, String> env) {
+        String cron = blankToNull(env.get("SCHEDULE_CRON"));
+        if (cron == null) {
+            return null;
+        }
+        String timezone = env.getOrDefault("SCHEDULE_TIMEZONE", ZoneId.systemDefault().getId());
+        try {
+            return CronSchedule.parse(cron, ZoneId.of(timezone));
+        } catch (DateTimeException e) {
+            throw new IllegalArgumentException("SCHEDULE_TIMEZONE is invalid: " + timezone, e);
         }
     }
 
