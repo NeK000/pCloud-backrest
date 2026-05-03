@@ -1,5 +1,7 @@
 # pCloud Backrest
 
+[![CI](https://github.com/ninik/pcloud-backrest/actions/workflows/ci.yml/badge.svg)](https://github.com/ninik/pcloud-backrest/actions/workflows/ci.yml)
+
 Production-oriented Java 25 CLI for backing up and restoring a local folder to pCloud with the official pCloud Java SDK.
 
 ## Features
@@ -35,6 +37,8 @@ gradle test jacocoTestReport
 ```
 
 Open `build/reports/jacoco/test/html/index.html` to inspect coverage.
+
+The CI badge above turns green/red based on the GitHub Actions workflow result. The workflow also uploads the JaCoCo HTML coverage report as a `coverage-report` artifact for each run.
 
 ## Package Structure
 
