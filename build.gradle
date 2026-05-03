@@ -1,9 +1,10 @@
 plugins {
     id 'application'
     id 'java'
+    id 'jacoco'
 }
 
-group = 'com.example'
+group = 'io.github.ninik'
 version = '1.0.0'
 
 java {
@@ -12,8 +13,12 @@ java {
     }
 }
 
+jacoco {
+    toolVersion = '0.8.14'
+}
+
 application {
-    mainClass = 'com.example.pcloudbackrest.App'
+    mainClass = 'io.github.ninik.pcloudbackrest.App'
 }
 
 dependencies {
@@ -33,6 +38,15 @@ tasks.withType(JavaCompile).configureEach {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }
 
 tasks.register('fatJar', Jar) {
