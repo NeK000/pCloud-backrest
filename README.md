@@ -22,10 +22,10 @@
     <a href="https://gradle.org/">
         <img alt="Gradle" src="https://img.shields.io/badge/gradle-wrapper-02303A">
     </a>
-    <a href="https://github.com/ninik/pcloud-backrest/commits/main">
+    <a href="https://github.com/NeK000/pcloud-backrest/commits/main">
         <img alt="Last commit" src="https://img.shields.io/github/last-commit/ninik/pcloud-backrest">
     </a>
-    <a href="https://github.com/ninik/pcloud-backrest/blob/main/LICENSE">
+    <a href="https://github.com/NeK000/pCloud-backrest/blob/main/LICENSE">
         <img alt="License" src="https://img.shields.io/github/license/ninik/pcloud-backrest">
     </a>
 </div>
