@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.pcloudbackrest.BackupServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-05-03T18:04:30.659Z" hostname="kontor" time="0.122">
+  <properties/>
+  <testcase name="uploadsMissingRemoteFileUsingGateway()" classname="com.example.pcloudbackrest.BackupServiceTest" time="0.112"/>
+  <system-out><![CDATA[2026-05-03T20:04:30.766+02:00 INFO  [Test worker] c.e.pcloudbackrest.BackupService - Uploaded file: /tmp/junit-16761563087517800608/album/image.jpg -> /Backups/Immich/album/image.jpg (10 bytes)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

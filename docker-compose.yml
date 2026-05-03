@@ -1,0 +1,16 @@
+services:
+  pcloud-backrest:
+    build: .
+    environment:
+      MODE: backup
+      PCLOUD_ACCESS_TOKEN: ${PCLOUD_ACCESS_TOKEN}
+      PCLOUD_REMOTE_FOLDER: /Backups/Immich
+      LOCAL_BACKUP_FOLDER: /data/photos
+      DRY_RUN: "false"
+      DELETE_EXTRA_FILES_ON_RESTORE: "false"
+      BACKUP_TIMESTAMPED: "false"
+      LOG_LEVEL: INFO
+      PCLOUD_API_HOST: eapi.pcloud.com
+    volumes:
+      - /path/to/photos:/data/photos
+    restart: "no"
