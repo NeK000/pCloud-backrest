@@ -2,19 +2,19 @@
 
 <div style="display: flex; gap: 4px; flex-wrap: wrap;">
     <a href="https://github.com/NeK000/pCloud-backrest/actions/workflows/ci.yml">
-        <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/ninik/pcloud-backrest/ci.yml?branch=main&label=ci&logo=githubactions&logoColor=white">
+        <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/NeK000/pCloud-backrest/ci.yml?branch=main&label=ci&logo=githubactions&logoColor=white">
     </a>
     <a href="https://github.com/NeK000/pCloud-backrest/actions/workflows/ci.yml">
-        <img alt="Tests" src="https://img.shields.io/github/actions/workflow/status/ninik/pcloud-backrest/ci.yml?branch=main&label=tests&logo=githubactions&logoColor=white">
+        <img alt="Tests" src="https://img.shields.io/github/actions/workflow/status/NeK000/pCloud-backrest/ci.yml?branch=main&label=tests&logo=githubactions&logoColor=white">
     </a>
     <a href="https://github.com/NeK000/pCloud-backrest/actions/workflows/ci.yml">
-        <img alt="Build" src="https://img.shields.io/github/actions/workflow/status/ninik/pcloud-backrest/ci.yml?branch=main&label=build&logo=githubactions&logoColor=white">
+        <img alt="Build" src="https://img.shields.io/github/actions/workflow/status/NeK000/pCloud-backrest/ci.yml?branch=main&label=build&logo=githubactions&logoColor=white">
     </a>
     <a href="https://github.com/NeK000/pCloud-backrest/actions/workflows/ci.yml">
-        <img alt="Coverage" src="https://raw.githubusercontent.com/ninik/pcloud-backrest/main/.github/badges/jacoco.svg">
+        <img alt="Coverage" src="https://img.shields.io/badge/coverage-generated%20by%20CI-blue?logo=jacoco">
     </a>
     <a href="https://github.com/NeK000/pCloud-backrest/actions/workflows/ci.yml">
-        <img alt="Branch coverage" src="https://raw.githubusercontent.com/ninik/pcloud-backrest/main/.github/badges/branches.svg">
+        <img alt="Branch coverage" src="https://img.shields.io/badge/branches-generated%20by%20CI-blue?logo=jacoco">
     </a>
     <a href="https://www.oracle.com/java/technologies/javase/25-relnote-issues.html">
         <img alt="Java 25" src="https://img.shields.io/badge/java-25-orange">
@@ -23,10 +23,10 @@
         <img alt="Gradle" src="https://img.shields.io/badge/gradle-wrapper-02303A">
     </a>
     <a href="https://github.com/NeK000/pcloud-backrest/commits/main">
-        <img alt="Last commit" src="https://img.shields.io/github/last-commit/ninik/pcloud-backrest">
+        <img alt="Last commit" src="https://img.shields.io/github/last-commit/NeK000/pCloud-backrest">
     </a>
     <a href="https://github.com/NeK000/pCloud-backrest/blob/main/LICENSE">
-        <img alt="License" src="https://img.shields.io/github/license/ninik/pcloud-backrest">
+        <img alt="License" src="https://img.shields.io/github/license/NeK000/pCloud-backrest">
     </a>
 </div>
 
